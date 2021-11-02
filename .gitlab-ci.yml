@@ -1,0 +1,30 @@
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+
+stages:
+  - test
+  - release
+  - deploy
+
+acceptance:
+  stage: test
+  script:
+    - make test TAG=${CI_COMMIT_SHA:0:12}
+  after_script:
+    - make adown
+
+release:
+  stage: release
+  script:
+    - make release TAG=${CI_COMMIT_SHA:0:12}
+  only:
+    - master
+
+production:
+  stage: deploy
+  environment:
+    name: production
+  script:
+    - make deploy
+  only:
+    - master

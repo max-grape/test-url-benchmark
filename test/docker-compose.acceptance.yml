@@ -1,0 +1,102 @@
+version: '2.1'
+
+services:
+  backend:
+    image: ${IMG}:${TAG}
+    environment:
+      - LOG_LEVEL=debug
+
+#      - CPU=1
+
+      - REDIS_HOST=redis:6379
+      - REDIS_PASSWORD=
+      - REDIS_DATABASE=0
+
+      - HTTP_CLIENT_READ_TIMEOUT=3s
+
+      - PARSER_ENDPOINT=http://stub-yandex:8080/search
+      - PARSER_IN_PROGRESS_CACHE_EXPIRATION=4s
+      - PARSER_CACHE_EXPIRATION=24h
+
+      - BENCHMARK_CONCURRENCY=5
+      - BENCHMARK_REQUESTS_LIMIT=100
+      - BENCHMARK_IN_PROGRESS_CACHE_EXPIRATION=4s
+      - BENCHMARK_CACHE_EXPIRATION=24h
+
+      - HTTP_EXTERNAL_SERVER_ADDRESS=:8080
+      - HTTP_EXTERNAL_SERVER_READ_TIMEOUT=2s
+      - HTTP_EXTERNAL_SERVER_WRITE_TIMEOUT=60s
+      - HTTP_EXTERNAL_SERVER_SHUTDOWN_TIMEOUT=10s
+
+      - HTTP_INTERNAL_SERVER_ADDRESS=:8090
+      - HTTP_INTERNAL_SERVER_READ_TIMEOUT=2s
+      - HTTP_INTERNAL_SERVER_WRITE_TIMEOUT=2s
+      - HTTP_INTERNAL_SERVER_SHUTDOWN_TIMEOUT=10s
+
+      - SHUTDOWN_TIMEOUT=10s
+    depends_on:
+      stub-yandex:
+        condition: service_healthy
+      stub-external-resource-1:
+        condition: service_healthy
+      stub-external-resource-2:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  stub-yandex:
+    image: ${IMG}/stub-yandex:latest
+    build:
+      dockerfile: Dockerfile
+      context: stub-yandex
+      args:
+        - GO_IMG=$GO_IMG
+        - FROM_IMG=$FROM_IMG
+        - GOOS=linux
+        - GOARCH=amd64
+        - CWD=$CWD/test/stub-yandex
+    volumes:
+      - ./stub-yandex/search.acceptance.html:/search.html
+
+  stub-external-resource-1:
+    image: ${IMG}/external-stub:latest
+    build:
+      dockerfile: Dockerfile
+      context: stub-external-resource
+      args:
+        - GO_IMG=$GO_IMG
+        - FROM_IMG=$FROM_IMG
+        - GOOS=linux
+        - GOARCH=amd64
+        - CWD=$CWD/test/stub-external-resource
+    environment:
+      - TIMEOUT=100ms
+
+  stub-external-resource-2:
+    image: ${IMG}/stub-external-resource:latest
+    build:
+      dockerfile: Dockerfile
+      context: stub-external-resource
+      args:
+        - GO_IMG=$GO_IMG
+        - FROM_IMG=$FROM_IMG
+        - GOOS=linux
+        - GOARCH=amd64
+        - CWD=$CWD/test/stub-external-resource
+    environment:
+      - TIMEOUT=100ms
+
+  redis:
+    image: redis:6.2.5-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+      interval: 10s
+      timeout: 1s
+      retries: 10
+
+  acceptance:
+    image: ${GO_IMG}
+    volumes:
+      - ../:${CWD}
+    working_dir: ${CWD}
+    command: /bin/sh -c "go test -v ./test/acceptance"
