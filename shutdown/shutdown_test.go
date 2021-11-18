@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/max-grape/test-revo/shutdown"
+	"github.com/max-grape/test-url-benchmark/shutdown"
 	"github.com/stretchr/testify/assert"
 )
 

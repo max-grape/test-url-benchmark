@@ -3,7 +3,7 @@ package omap_test
 import (
 	"testing"
 
-	"github.com/max-grape/test-revo/omap"
+	"github.com/max-grape/test-url-benchmark/omap"
 	"github.com/stretchr/testify/assert"
 )
 

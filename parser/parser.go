@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/max-grape/test-revo/omap"
+	"github.com/max-grape/test-url-benchmark/omap"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/max-grape/test-revo/omap"
-	parserCacheWrapper "github.com/max-grape/test-revo/wrapper/parser"
+	"github.com/max-grape/test-url-benchmark/omap"
+	parserCacheWrapper "github.com/max-grape/test-url-benchmark/wrapper/parser"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,7 +4,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/max-grape/test-revo/config/env"
+	"github.com/max-grape/config/env"
 )
 
 const (
@@ -114,5 +114,5 @@ func getConfig() (*config, error) {
 		ShutdownTimeout: defaultShutdownTimeout,
 	}
 
-	return cfg, env.Get(cfg)
+	return cfg, env.Parse(cfg)
 }

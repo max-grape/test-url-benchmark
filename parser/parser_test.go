@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/max-grape/test-revo/omap"
-	"github.com/max-grape/test-revo/parser"
+	"github.com/max-grape/test-url-benchmark/omap"
+	"github.com/max-grape/test-url-benchmark/parser"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,4 +1,4 @@
-PROJECT_NAME   = github.com/max-grape/test-revo
+PROJECT_NAME   = github.com/max-grape/test-url-benchmark
 CWD            = /go/src/$(PROJECT_NAME)
 GOLANG_CI_IMG  = golangci/golangci-lint:v1.42-alpine
 GO_IMG         = golang:1.17.1

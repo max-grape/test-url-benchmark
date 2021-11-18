@@ -8,7 +8,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/max-grape/test-revo/benchmark"
+	"github.com/max-grape/test-url-benchmark/benchmark"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -48,6 +48,9 @@ github.com/improbable-eng/go-httpwares
 github.com/improbable-eng/go-httpwares/logging
 github.com/improbable-eng/go-httpwares/logging/logrus
 github.com/improbable-eng/go-httpwares/logging/logrus/ctxlogrus
+# github.com/max-grape/config v0.0.0-20211118151611-3f2e4943b6b3
+## explicit; go 1.17
+github.com/max-grape/config/env
 # github.com/mwitkow/go-conntrack v0.0.0-20190716064945-2f068394615f
 ## explicit
 # github.com/nxadm/tail v1.4.8
@@ -96,7 +99,7 @@ github.com/pmezard/go-difflib/difflib
 # github.com/sirupsen/logrus v1.8.1
 ## explicit; go 1.13
 github.com/sirupsen/logrus
-# github.com/stretchr/testify v1.5.1
+# github.com/stretchr/testify v1.7.0
 ## explicit; go 1.13
 github.com/stretchr/testify/assert
 # github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9
@@ -226,3 +229,6 @@ gopkg.in/tomb.v1
 # gopkg.in/yaml.v2 v2.4.0
 ## explicit; go 1.15
 gopkg.in/yaml.v2
+# gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+## explicit
+gopkg.in/yaml.v3

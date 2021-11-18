@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	benchmarkCacheWrapper "github.com/max-grape/test-revo/wrapper/benchmark"
+	benchmarkCacheWrapper "github.com/max-grape/test-url-benchmark/wrapper/benchmark"
 	"github.com/stretchr/testify/assert"
 )
 

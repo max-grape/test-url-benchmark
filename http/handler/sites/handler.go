@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/improbable-eng/go-httpwares/logging/logrus/ctxlogrus"
-	"github.com/max-grape/test-revo/omap"
+	"github.com/max-grape/test-url-benchmark/omap"
 )
 
 type ParserWrapper interface {

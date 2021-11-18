@@ -6,7 +6,7 @@ import (
 
 	"github.com/alicebob/miniredis/v2"
 	"github.com/go-redis/redis"
-	redis2 "github.com/max-grape/test-revo/cache/redis"
+	redis2 "github.com/max-grape/test-url-benchmark/cache/redis"
 	"github.com/stretchr/testify/assert"
 )
 

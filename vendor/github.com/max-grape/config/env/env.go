@@ -19,7 +19,7 @@ var (
 	ErrNonStructInput     = errors.New("non struct input")
 )
 
-func Get(input interface{}) error {
+func Parse(input interface{}) error {
 	if input == nil {
 		return ErrInputIsNil
 	}

@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/max-grape/test-revo/http/handler/health"
+	"github.com/max-grape/test-url-benchmark/http/handler/health"
 	"github.com/stretchr/testify/assert"
 )
 
