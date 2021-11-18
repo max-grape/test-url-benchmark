@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"runtime"
 	"runtime/debug"
-	"time"
 
 	"github.com/go-redis/redis"
 	"github.com/improbable-eng/go-httpwares"
@@ -105,7 +104,7 @@ func main() {
 
 	dialer := &net.Dialer{
 		LocalAddr: &net.TCPAddr{IP: net.IPv4zero},
-		KeepAlive: time.Second * 30,
+		KeepAlive: cfg.HTTPClientKeepAlive,
 	}
 
 	httpClient := &http.Client{
@@ -114,8 +113,8 @@ func main() {
 			Proxy:               http.ProxyFromEnvironment,
 			Dial:                dialer.Dial,
 			TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
-			MaxIdleConnsPerHost: 10000,
-			MaxConnsPerHost:     0,
+			MaxIdleConnsPerHost: cfg.HTTPClientMaxIdleConnsPerHost,
+			MaxConnsPerHost:     cfg.HTTPClientMaxConnsPerHost,
 		},
 	}
 

@@ -14,7 +14,10 @@ const (
 	defaultRedisPassword = ""
 	defaultRedisDatabase = 0
 
-	defaultHTTPClientTimeout = time.Second * 3
+	defaultHTTPClientTimeout             = time.Second * 3
+	defaultHTTPClientKeepAlive           = time.Second * 30
+	defaultHTTPClientMaxIdleConnsPerHost = 10000
+	defaultHTTPClientMaxConnsPerHost     = 0
 
 	defaultParserEndpoint                  = ""
 	defaultParserInProgressCacheExpiration = time.Second * 4
@@ -47,7 +50,10 @@ type config struct {
 	RedisPassword string `env:"REDIS_PASSWORD"`
 	RedisDatabase int    `env:"REDIS_DATABASE"`
 
-	HTTPClientTimeout time.Duration `env:"HTTP_CLIENT_TIMEOUT"`
+	HTTPClientTimeout             time.Duration `env:"HTTP_CLIENT_TIMEOUT"`
+	HTTPClientKeepAlive           time.Duration `env:"HTTP_CLIENT_KEEP_ALIVE"`
+	HTTPClientMaxIdleConnsPerHost int           `env:"HTTP_CLIENT_MAX_IDLE_CONNS_PER_HOST"`
+	HTTPClientMaxConnsPerHost     int           `env:"HTTP_CLIENT_MAX_CONNS_PER_HOST"`
 
 	ParserEndpoint                  string        `env:"PARSER_ENDPOINT"`
 	ParserInProgressCacheExpiration time.Duration `env:"PARSER_IN_PROGRESS_CACHE_EXPIRATION"`
@@ -81,7 +87,10 @@ func getConfig() (*config, error) {
 		RedisPassword: defaultRedisPassword,
 		RedisDatabase: defaultRedisDatabase,
 
-		HTTPClientTimeout: defaultHTTPClientTimeout,
+		HTTPClientTimeout:             defaultHTTPClientTimeout,
+		HTTPClientKeepAlive:           defaultHTTPClientKeepAlive,
+		HTTPClientMaxIdleConnsPerHost: defaultHTTPClientMaxIdleConnsPerHost,
+		HTTPClientMaxConnsPerHost:     defaultHTTPClientMaxConnsPerHost,
 
 		ParserEndpoint:                  defaultParserEndpoint,
 		ParserInProgressCacheExpiration: defaultParserInProgressCacheExpiration,

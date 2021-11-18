@@ -80,6 +80,9 @@
 | REDIS_PASSWORD                         | Пароль Redis                                                                                  |                                          |
 | REDIS_DATABASE                         | База данных Redis                                                                             | 0                                        |
 | HTTP_CLIENT_TIMEOUT                    | Время на выполнение внешнего запроса                                                          | 3s                                       |
+| HTTP_CLIENT_KEEP_ALIVE                 | Интервал времени между keep-alive                                                             | 30s                                      |
+| HTTP_CLIENT_MAX_IDLE_CONNS_PER_HOST    | Максимальное количество простаивающих соединений                                              | 10000                                    |
+| HTTP_CLIENT_MAX_CONNS_PER_HOST         | Максимальное количество соединений                                                            | 0 (без ограничений)                      |
 | PARSER_ENDPOINT                        | Адрес для получения данных о тестируемых ресурсах                                             |                                          |
 | PARSER_IN_PROGRESS_CACHE_EXPIRATION    | Время на которе блокируется получение данных о тестируемых ресурсах (для идентичных запросов) | 4s                                       |
 | PARSER_CACHE_EXPIRATION                | Время кеширования данных о тестируемых ресурсах                                               | 24h                                      |
